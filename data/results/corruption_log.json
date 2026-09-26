@@ -1,0 +1,108 @@
+{
+  "input_rows": 24,
+  "output_rows": 21,
+  "scenarios": [
+    {
+      "name": "drop_latest_records",
+      "affected_rows": 5,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671824",
+        "10.1145/3637528.3671807",
+        "10.1145/3637528.3671804",
+        "10.1145/3637528.3671808",
+        "10.1145/3637528.3671812"
+      ],
+      "details": "Dropped the 5 newest records (20% rounded up)."
+    },
+    {
+      "name": "blank_summary",
+      "affected_rows": 1,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671805"
+      ],
+      "details": [
+        {
+          "paper_id": "10.1145/3637528.3671805",
+          "summary": "Evaluating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions."
+        }
+      ]
+    },
+    {
+      "name": "inject_noise",
+      "affected_rows": 1,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671803"
+      ],
+      "details": "Appended deterministic garbage marker to the summary."
+    },
+    {
+      "name": "truncate_title",
+      "affected_rows": 1,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671809"
+      ],
+      "details": "Truncated title to three characters, below the eight-character threshold."
+    },
+    {
+      "name": "stale_date",
+      "affected_rows": 1,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671806"
+      ],
+      "details": "Changed published date to 2025-09-26 (365 days before the run date)."
+    },
+    {
+      "name": "duplicate_rows",
+      "affected_rows": 2,
+      "affected_paper_ids": [
+        "10.1145/3637528.3671805",
+        "10.1145/3637528.3671803"
+      ],
+      "details": "Appended 2 duplicated rows."
+    }
+  ],
+  "changes": [
+    {
+      "scenario": "blank_summary",
+      "paper_id": "10.1145/3637528.3671805",
+      "field": "summary",
+      "before": "Evaluating open-domain QA requires robust metrics. We benchmark semantic similarity, token-level overlap F1, and model-based judge verdicts to quantify RAG answer correctness across noisy corpus conditions.",
+      "after": ""
+    },
+    {
+      "scenario": "inject_noise",
+      "paper_id": "10.1145/3637528.3671803",
+      "field": "summary",
+      "before": "Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts.",
+      "after": "Soft-deletions in vector databases leave orphaned embeddings that lead to hallucinations. This paper designs an idempotent index synchronization protocol that guarantees complete purges of outdated vector artifacts. [NOISE_### CORRUPTED_TEXT]"
+    },
+    {
+      "scenario": "truncate_title",
+      "paper_id": "10.1145/3637528.3671809",
+      "field": "title",
+      "before": "Chunking Strategies for Technical Documentation Retrieval",
+      "after": "BAD"
+    },
+    {
+      "scenario": "stale_date",
+      "paper_id": "10.1145/3637528.3671806",
+      "field": "published",
+      "before": "2026-05-02",
+      "after": "2025-09-26"
+    },
+    {
+      "scenario": "duplicate_rows",
+      "paper_id": "10.1145/3637528.3671805",
+      "field": "row",
+      "before": "original",
+      "after": "duplicated"
+    },
+    {
+      "scenario": "duplicate_rows",
+      "paper_id": "10.1145/3637528.3671803",
+      "field": "row",
+      "before": "original",
+      "after": "duplicated"
+    }
+  ]
+}
